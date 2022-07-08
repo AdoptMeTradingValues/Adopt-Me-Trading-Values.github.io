@@ -1,0 +1,339 @@
+<html>
+
+<!-- Mirrored from adoptmetradingvalues.com/know-your-values-game.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jul 2022 20:41:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script data-ad-client="ca-pub-5814941088162332" async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<link rel="icon" type="image/png" href="favicon.png" />
+<title>Roblox Adopt Me Trading Values - Know Your Values Game</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<style>
+.tradezoneupdates {
+  background-color: #CDFFE6;
+  border-radius: 25px;
+  margin:2% 8% 2% 8%;
+  text-align:left;
+}
+.outergridupdates {
+  display: grid;
+  grid-template-columns: 100%;
+  background-color: #CDFFE6;
+  padding: 10px;
+  border-radius: 25px;
+  max-width:80%;
+  margin: 0 auto;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+</style>
+<script>
+var loggedin=0;
+var audio1 = new Audio("correct.mp3");
+var audio2 = new Audio("wrong.mp3");
+function playAudio(answer) {
+	if (answer=="correct") {
+		audio1.currentTime = 0; audio1.play();
+	}
+	else {
+		audio2.currentTime = 0; audio2.play();
+	}
+}
+
+curscore=0;
+var item=Array();
+
+/*function get10more() {
+	document.getElementById("gametable").innerHTML="<div align='center'><img src='loading2.gif' alt='Loading'><br>Loading...</div>";
+	var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("gametable").innerHTML = this.responseText;		
+		document.getElementById('scorekeeper').value=curscore;
+		document.getElementById('score').innerHTML='Score: ' + curscore;
+		refreshValues();
+      }
+    };
+    xmlhttp.open("GET", "get10more.php", true);
+    xmlhttp.send();
+}*/
+var curi=0;
+function checkValue(side, i) {
+	var other=0;
+	if (side=="left") {
+		if (item[i]>item[i+1]) {
+			document.getElementById('row'+i).style.display='none';
+			document.getElementById('row'+(i+2)).style.display='';
+			curscore++;
+			document.getElementById('scorekeeper').value=curscore;
+			document.getElementById('score').innerHTML='Score: ' + curscore;
+			playAudio("correct");
+			startTimer();
+			curi=i;
+		}
+		else {
+			document.getElementById('row'+i).style.display='none';
+			document.getElementById('row202').style.display='';
+			document.getElementById('score').innerHTML='Final Score: ' + curscore;
+			playAudio("wrong");
+			updateHighScore();
+			clearTimeout(downloadTimer);
+		}
+	}
+	else if (side=="right") {
+		if (item[i]>item[i-1]) {
+			document.getElementById('row'+(i-1)).style.display='none';
+			document.getElementById('row'+(i+1)).style.display='';
+			curscore++;
+			document.getElementById('scorekeeper').value=curscore;
+			document.getElementById('score').innerHTML='Score: ' + curscore;
+			playAudio("correct");
+			startTimer();
+			curi=i-1;
+		}
+		else {
+			document.getElementById('row'+(i-1)).style.display='none';
+			document.getElementById('row202').style.display='';
+			document.getElementById('score').innerHTML='Final Score: ' + curscore;
+			playAudio("wrong");
+			updateHighScore();
+			clearTimeout(downloadTimer);
+		}		
+	}
+	else if (side=="fair") {
+		if (item[i]==item[i+1]) {
+			document.getElementById('row'+i).style.display='none';
+			document.getElementById('row'+(i+2)).style.display='';
+			curscore++;
+			document.getElementById('scorekeeper').value=curscore;
+			document.getElementById('score').innerHTML='Score: ' + curscore;
+			playAudio("correct");
+			startTimer();
+			curi=i;
+		}
+		else {
+			document.getElementById('row'+i).style.display='none';
+			document.getElementById('row202').style.display='';
+			document.getElementById('score').innerHTML='Final Score: ' + curscore;
+			playAudio("wrong");
+			updateHighScore();
+			clearTimeout(downloadTimer);
+		}
+	}
+	else { //timer expired
+		document.getElementById('row'+(curi+2)).style.display='none';
+		document.getElementById('row202').style.display='';
+		document.getElementById('score').innerHTML='Final Score: ' + curscore;
+		playAudio("wrong");
+		updateHighScore();
+		clearTimeout(downloadTimer);
+		document.getElementById('message').innerHTML+='<br>You ran out of time! Be sure to make your choice before the timer runs out.';
+	}
+	if (i+2>200) {
+		updateHighScore();
+		clearTimeout(downloadTimer);
+	}
+}
+
+function updateHighScore() {
+	if (loggedin==1) {
+		//document.getElementById("message").innerHTML="<div align='center'><img src='loading2.gif' alt='Loading'></div>";
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+		  if (this.readyState == 4 && this.status == 200) {
+			document.getElementById('message').innerHTML+=this.responseText;
+		  }
+		};
+		var rando=Math.random();
+		xmlhttp.open("GET.html", "updatehighscoredcbc.html?a=thisscore&amp;b=thatscore&amp;p=myscore&amp;r=" + rando + "&q=" + curscore + "&z=highscore", true);
+		xmlhttp.send();
+	}
+	else {
+		document.getElementById('message').innerHTML+='<br>High score not saved because you are not logged in.<br>Log In or Sign Up for a  new account so you can save your score and try to earn a spot on our Know Your Values Leaderboard!';
+	}
+}
+
+var downloadTimer;
+
+function startTimer() {
+	clearTimeout(downloadTimer);
+	document.getElementById("progressBar").value=0;
+	document.getElementById("countdown").innerHTML = "15 seconds remaining";
+	var timeleft = 15;
+	downloadTimer = setInterval(function(){
+	  if(timeleft <= 0){
+		clearInterval(downloadTimer);
+		checkValue('timerexpired',curi+2);
+	  }
+	  document.getElementById("progressBar").value = 15 - timeleft;
+	  document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+	  timeleft -= 1;
+	}, 1000);
+}
+
+function playagainloading() {
+	document.getElementById("playagain").innerHTML="<div align='center'><img src='loading2.gif' alt='Loading'><br>Loading...</div>";
+}
+</script>
+</head>
+<body bgcolor="#bbddff">
+<style>
+.login {
+	box-sizing: border-box;
+  	font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+  	font-size: 16px;
+  	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+  	width: 400px;
+  	background-color: #ffffff;
+  	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+  	margin: 300px auto;
+}
+.login h1 {
+  	text-align: center;
+  	color: #5b6574;
+  	font-size: 24px;
+  	padding: 20px 0 20px 0;
+  	border-bottom: 2px solid #23b574;
+}
+.login form {
+  	display: flex;
+  	flex-wrap: wrap;
+  	justify-content: center;
+  	padding-top: 20px;
+}
+.login form label {
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	width: 50px;
+  	height: 50px;
+  	background-color: #23b574;
+  	color: #ffffff;
+}
+.login form input[type="password"], .login form input[type="text"] {
+  	width: 310px;
+  	height: 50px;
+  	border: 1px solid #dee0e4;
+  	margin-bottom: 20px;
+  	padding: 0 15px;
+}
+.login form input[type="submit"] {
+  	width: 100%;
+  	padding: 15px;
+ 	margin-top: 20px;
+  	background-color: #23b574;
+  	border: 0;
+  	cursor: pointer;
+  	font-weight: bold;
+  	color: #ffffff;
+  	transition: background-color 0.2s;
+}
+.login form input[type="submit"]:hover {
+	background-color: #6633cc;
+  	transition: background-color 0.2s;
+}
+</style>
+<div align="right" style="font-size:24px;"> <a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="document.getElementById('modalboomlogin').style.visibility='visible'; return false;">Log In</a> <a class="wflbutton" style="font-size:22px; margin-right:25px; background-color:#6633cc; min-width:50px;" href="register.html">Sign Up</a> <a href="#"><img src="images/help.png" alt="?" title="Help" style="margin-right:3px; width:30px; vertical-align:middle; height:30px;" onClick="document.getElementById('videohelp2').style.visibility='visible'; return false;"></a>
+</div>
+<div id="videohelp2" style="position:fixed; visibility:hidden; padding:2% 5% 5% 5%; z-index: 8; background-color:#CDFFE6; min-width:50%; min-height:50%; top:25%; left:25%; margin-left:-5%; margin-top:-10% display: inline-block; cursor: pointer; border:1px solid black; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; overflow: auto;	border-radius: 25px; text-align:center;">
+<div class="popupgridcloser"><span onClick="document.getElementById('videohelp2').style.visibility='hidden'; document.getElementById('bighelpvid2').src='https://www.youtube.com/embed/dq1N_-GQtEc';" style="font-size:20px; color:#ffffff; background-color:#ee2222; padding:4px; font-weight:bold;"> X </span><br></div>
+<span style="text-align:center;">Find Fair Trades Quickly<br>
+AdoptMeTradingValues.com How-To Video<br><br></span>
+<iframe id="bighelpvid2" width="640" height="390" src="https://www.youtube.com/embed/dq1N_-GQtEc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="modal" id="modalboomlogin"><div class="login" id="loginscreen">
+<div class="popupgridcloser" style="background-color:unset;"><span style="padding-right:45%; font-size:26px;">Log In</span> <span onClick="document.getElementById('modalboomlogin').style.visibility='hidden';" style="font-size:20px; color:#ffffff; background-color:#ee2222; padding:4px; font-weight:bold;"> X </span></div>
+<form action="https://adoptmetradingvalues.com/home.php" method="post">
+<label for="username">
+<img src="username.png" alt="UN" style="height:30px; width:30px;">
+</label>
+<input type="text" name="username" placeholder="Username" id="username" required>
+<label for="password">
+<img src="password.png" alt="PW" style="height:30px; width:30px;">
+</label>
+<input type="password" name="password" placeholder="Password" id="password" required>
+<br><span align="center" style="font-size:small;"><a href="forgotpw.html">Forgot Password</a></span><br>
+<input type="submit" value="Login">
+</form>
+</div></div><div align="center"><img src="images/header.png" alt="Roblox Adopt Me Trading Values">
+<ul align="center">
+<li><a href="index-2.html">W/F/L</a></li>
+<li><a href="pet-value-list.html">Pet Value List</a></li>
+<li><a href="play-games.html">Games</a></li>
+<li><a href="videos.html">Videos</a></li>
+<li><a href="tips-to-get-rich.html">Tips</a></li>
+<li><a href="roblox-adopt-me.html">About</a></li>
+</ul>
+</div>
+<div class="tradezoneupdates">
+<div class="outergridupdates" id="gametable">
+<script>var item=Array();item[0]=30;item[1]=25;item[2]=8;item[3]=90;item[4]=2;item[5]=2;item[6]=120;item[7]=470;item[8]=45;item[9]=90;item[10]=45;item[11]=110;item[12]=200;item[13]=35;item[14]=200;item[15]=4;item[16]=90;item[17]=170;item[18]=16;item[19]=200;item[20]=70;item[21]=90;item[22]=4;item[23]=45;item[24]=45;item[25]=25;item[26]=70;item[27]=35;item[28]=25;item[29]=1050;item[30]=45;item[31]=45;item[32]=160;item[33]=45;item[34]=35;item[35]=16;item[36]=16;item[37]=90;item[38]=20;item[39]=4;item[40]=20;item[41]=4;item[42]=8;item[43]=8800;item[44]=35;item[45]=0;item[46]=35;item[47]=190;item[48]=45;item[49]=110;item[50]=190;item[51]=12500;item[52]=200;item[53]=110;item[54]=300;item[55]=25;item[56]=4;item[57]=1;item[58]=25;item[59]=950;item[60]=350;item[61]=70;item[62]=30;item[63]=0;item[64]=35;item[65]=35;item[66]=190;item[67]=90;item[68]=350;item[69]=2;item[70]=8;item[71]=2;item[72]=30;item[73]=1250;item[74]=35;item[75]=4;item[76]=100;item[77]=280;item[78]=45;item[79]=90;item[80]=2;item[81]=130;item[82]=8;item[83]=2;item[84]=8;item[85]=20;item[86]=280;item[87]=20;item[88]=45;item[89]=0;item[90]=45;item[91]=30;item[92]=40;item[93]=40;item[94]=290;item[95]=30;item[96]=40;item[97]=45;item[98]=100;item[99]=2620;item[100]=45;item[101]=70;item[102]=35;item[103]=0;item[104]=40;item[105]=8;item[106]=8;item[107]=6000;item[108]=25;item[109]=380;item[110]=8;item[111]=50;item[112]=4;item[113]=8;item[114]=70;item[115]=70;item[116]=90;item[117]=45;item[118]=35;item[119]=90;item[120]=8;item[121]=4;item[122]=0;item[123]=35;item[124]=4;item[125]=0;item[126]=4;item[127]=850;item[128]=90;item[129]=70;item[130]=190;item[131]=8;item[132]=1170;item[133]=25;item[134]=30;item[135]=0;item[136]=45;item[137]=440;item[138]=35;item[139]=35;item[140]=210;item[141]=12;item[142]=90;item[143]=4;item[144]=45;item[145]=2;item[146]=8;item[147]=45;item[148]=90;item[149]=230;item[150]=0;item[151]=8;item[152]=70;item[153]=210;item[154]=260;item[155]=45;item[156]=0;item[157]=45;item[158]=0;item[159]=250;item[160]=30;item[161]=35;item[162]=180;item[163]=140;item[164]=2100;item[165]=0;item[166]=35;item[167]=45;item[168]=70;item[169]=0;item[170]=40;item[171]=30;item[172]=45;item[173]=100;item[174]=200;item[175]=25;item[176]=16;item[177]=210;item[178]=70;item[179]=70;item[180]=12;item[181]=25;item[182]=2;item[183]=360;item[184]=120;item[185]=2;item[186]=70;item[187]=190;item[188]=40;item[189]=4;item[190]=35;item[191]=35;item[192]=2790;item[193]=130;item[194]=190;item[195]=130;item[196]=1250;item[197]=1340;item[198]=70;item[199]=330;</script><div align="center"><span style="font-size:30px;">Know Your Values</span><br><i>An Adopt Me Values Game</i><br>How many values can you guess correctly in a row?<br><br><div style="font-size:18px; background-color:#ddddee; padding:3px; border:1px solid black; min-width:30%; max-width:65%;"><strong>Click the item that is worth more</strong>,<br>or click Fair if the two items have the same value.</div><br><a class="wflbutton" href="#" style="font-size:24px; margin-right:10px; background-color:#44bb44; min-width:50px;" id="score">Score: 0</a><input type="hidden" id="scorekeeper" value="0"><br><progress value="0" max="15" id="progressBar"></progress><br><div id="countdown"></div>
+<table class="styled-table" style="text-align:center; min-width:65%"><tr id="row0"><td><img id="item0" src="images/701.png" onClick="checkValue('left',0);"><br>Explorer Hat</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',0); return false;">Fair</a></td><td><img id="item1" src="images/926.png" onClick="checkValue('right',1);"><br>Eco Black Tree Motif Cap</td></tr><tr id="row2" style="display:none;"><td><img id="item2" src="images/1124.png" onClick="checkValue('left',2);"><br>Victorial Collar</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',2); return false;">Fair</a></td><td><img id="item3" src="images/491.png" onClick="checkValue('right',3);"><br>Griffin Propeller</td></tr><tr id="row4" style="display:none;"><td><img id="item4" src="images/473.png" onClick="checkValue('left',4);"><br>Floppy Bunny Plushie</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',4); return false;">Fair</a></td><td><img id="item5" src="images/340.png" onClick="checkValue('right',5);"><br>Small Gift</td></tr><tr id="row6" style="display:none;"><td><img id="item6" src="images/203.png" onClick="checkValue('left',6);"><br>Hoverboard</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',6); return false;">Fair</a></td><td><img id="item7" src="images/38.png" onClick="checkValue('right',7);"><br>Zombie Buffalo</td></tr><tr id="row8" style="display:none;"><td><img id="item8" src="images/649.png" onClick="checkValue('left',8);"><br>Bee Wings</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',8); return false;">Fair</a></td><td><img id="item9" src="images/81.png" onClick="checkValue('right',9);"><br>Koala</td></tr><tr id="row10" style="display:none;"><td><img id="item10" src="images/945.png" onClick="checkValue('left',10);"><br>Halloween Black Axe Guitar Accessory</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',10); return false;">Fair</a></td><td><img id="item11" src="images/762.png" onClick="checkValue('right',11);"><br>Magnifying Glass</td></tr><tr id="row12" style="display:none;"><td><img id="item12" src="images/603.png" onClick="checkValue('left',12);"><br>Starpower Wand</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',12); return false;">Fair</a></td><td><img id="item13" src="images/905.png" onClick="checkValue('right',13);"><br>Eco Orange Maple Earrings</td></tr><tr id="row14" style="display:none;"><td><img id="item14" src="images/541.png" onClick="checkValue('left',14);"><br>Panda Pal</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',14); return false;">Fair</a></td><td><img id="item15" src="images/484.png" onClick="checkValue('right',15);"><br>Fun Frisbee</td></tr><tr id="row16" style="display:none;"><td><img id="item16" src="images/178.png" onClick="checkValue('left',16);"><br>Doge Scooter</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',16); return false;">Fair</a></td><td><img id="item17" src="images/487.png" onClick="checkValue('right',17);"><br>Glider</td></tr><tr id="row18" style="display:none;"><td><img id="item18" src="images/142.png" onClick="checkValue('left',18);"><br>Dolphin</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',18); return false;">Fair</a></td><td><img id="item19" src="images/628.png" onClick="checkValue('right',19);"><br>Wooden Pogo</td></tr><tr id="row20" style="display:none;"><td><img id="item20" src="images/742.png" onClick="checkValue('left',20);"><br>Head Chef</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',20); return false;">Fair</a></td><td><img id="item21" src="images/331.png" onClick="checkValue('right',21);"><br>Bat Box</td></tr><tr id="row22" style="display:none;"><td><img id="item22" src="images/1134.png" onClick="checkValue('left',22);"><br>Crayon Mohawk</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',22); return false;">Fair</a></td><td><img id="item23" src="images/87.png" onClick="checkValue('right',23);"><br>Sloth</td></tr><tr id="row24" style="display:none;"><td><img id="item24" src="images/788.png" onClick="checkValue('left',24);"><br>Pink Designer Backpack</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',24); return false;">Fair</a></td><td><img id="item25" src="images/108.png" onClick="checkValue('right',25);"><br>Triceratops</td></tr><tr id="row26" style="display:none;"><td><img id="item26" src="images/480.png" onClick="checkValue('left',26);"><br>Founder's Key Throw Toy</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',26); return false;">Fair</a></td><td><img id="item27" src="images/503.png" onClick="checkValue('right',27);"><br>Ice Cream Plush</td></tr><tr id="row28" style="display:none;"><td><img id="item28" src="images/389.png" onClick="checkValue('left',28);"><br>Wheelbarrow Stroller</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',28); return false;">Fair</a></td><td><img id="item29" src="images/295.png" onClick="checkValue('right',29);"><br>Candy Cane</td></tr><tr id="row30" style="display:none;"><td><img id="item30" src="images/976.png" onClick="checkValue('left',30);"><br>Sleigh Bell Throw Toy</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',30); return false;">Fair</a></td><td><img id="item31" src="images/218.png" onClick="checkValue('right',31);"><br>Muscle Car</td></tr><tr id="row32" style="display:none;"><td><img id="item32" src="images/187.png" onClick="checkValue('left',32);"><br>Fissy Skateboard</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',32); return false;">Fair</a></td><td><img id="item33" src="images/669.png" onClick="checkValue('right',33);"><br>Bone Wings</td></tr><tr id="row34" style="display:none;"><td><img id="item34" src="images/930.png" onClick="checkValue('left',34);"><br>Eco Blue Solar Panel Backpack</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',34); return false;">Fair</a></td><td><img id="item35" src="images/1040.png" onClick="checkValue('right',35);"><br>Fan Flying Disc</td></tr><tr id="row36" style="display:none;"><td><img id="item36" src="images/114.png" onClick="checkValue('left',36);"><br>Tasmanian Tiger</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',36); return false;">Fair</a></td><td><img id="item37" src="images/193.png" onClick="checkValue('right',37);"><br>Glass Snowboard</td></tr><tr id="row38" style="display:none;"><td><img id="item38" src="images/570.png" onClick="checkValue('left',38);"><br>Rubber Dog Balloon</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',38); return false;">Fair</a></td><td><img id="item39" src="images/456.png" onClick="checkValue('right',39);"><br>Drone Propeller</td></tr><tr id="row40" style="display:none;"><td><img id="item40" src="images/1024.png" onClick="checkValue('left',40);"><br>RGB Friend</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',40); return false;">Fair</a></td><td><img id="item41" src="images/1162.png" onClick="checkValue('right',41);"><br>Snowman Plushie Friend</td></tr><tr id="row42" style="display:none;"><td><img id="item42" src="images/620.png" onClick="checkValue('left',42);"><br>T-Rex Throw Toy</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',42); return false;">Fair</a></td><td><img id="item43" src="images/132.png" onClick="checkValue('right',43);"><br>Safari Egg</td></tr><tr id="row44" style="display:none;"><td><img id="item44" src="images/651.png" onClick="checkValue('left',44);"><br>Beret</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',44); return false;">Fair</a></td><td><img id="item45" src="images/917.png" onClick="checkValue('right',45);"><br>Eco Green Vine Badge</td></tr><tr id="row46" style="display:none;"><td><img id="item46" src="images/720.png" onClick="checkValue('left',46);"><br>Flower Collar</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',46); return false;">Fair</a></td><td><img id="item47" src="images/401.png" onClick="checkValue('right',47);"><br>Banana Pogo</td></tr><tr id="row48" style="display:none;"><td><img id="item48" src="images/662.png" onClick="checkValue('left',48);"><br>Black Purse</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',48); return false;">Fair</a></td><td><img id="item49" src="images/494.png" onClick="checkValue('right',49);"><br>Heart Plushie</td></tr><tr id="row50" style="display:none;"><td><img id="item50" src="images/159.png" onClick="checkValue('left',50);"><br>Black Snowboard</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',50); return false;">Fair</a></td><td><img id="item51" src="images/2.png" onClick="checkValue('right',51);"><br>Giraffe</td></tr><tr id="row52" style="display:none;"><td><img id="item52" src="images/54.png" onClick="checkValue('left',52);"><br>Unicorn</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',52); return false;">Fair</a></td><td><img id="item53" src="images/60.png" onClick="checkValue('right',53);"><br>Cerberus</td></tr><tr id="row54" style="display:none;"><td><img id="item54" src="images/1121.png" onClick="checkValue('left',54);"><br>Rainbow Maker</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',54); return false;">Fair</a></td><td><img id="item55" src="images/102.png" onClick="checkValue('right',55);"><br>Pterodactyl</td></tr><tr id="row56" style="display:none;"><td><img id="item56" src="images/1178.png" onClick="checkValue('left',56);"><br>Pride Glasses</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',56); return false;">Fair</a></td><td><img id="item57" src="images/1007.png" onClick="checkValue('right',57);"><br>Knafeh</td></tr><tr id="row58" style="display:none;"><td><img id="item58" src="images/933.png" onClick="checkValue('left',58);"><br>Halloween Blue Scorpion</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',58); return false;">Fair</a></td><td><img id="item59" src="images/18.png" onClick="checkValue('right',59);"><br>Lion</td></tr><tr id="row60" style="display:none;"><td><img id="item60" src="images/823.png" onClick="checkValue('left',60);"><br>Santa Hat</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',60); return false;">Fair</a></td><td><img id="item61" src="images/836.png" onClick="checkValue('right',61);"><br>Socks & Sandals</td></tr><tr id="row62" style="display:none;"><td><img id="item62" src="images/485.png" onClick="checkValue('left',62);"><br>Futuristic Grapple</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',62); return false;">Fair</a></td><td><img id="item63" src="images/760.png" onClick="checkValue('right',63);"><br>LGBTQ Pin</td></tr><tr id="row64" style="display:none;"><td><img id="item64" src="images/995.png" onClick="checkValue('left',64);"><br>Egyptian Chariot Stroller</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',64); return false;">Fair</a></td><td><img id="item65" src="images/304.png" onClick="checkValue('right',65);"><br>Cotton Candy</td></tr><tr id="row66" style="display:none;"><td><img id="item66" src="images/312.png" onClick="checkValue('left',66);"><br>Ice Tub</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',66); return false;">Fair</a></td><td><img id="item67" src="images/130.png" onClick="checkValue('right',67);"><br>Fossil Egg</td></tr><tr id="row68" style="display:none;"><td><img id="item68" src="images/1043.png" onClick="checkValue('left',68);"><br>Dragon Train</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',68); return false;">Fair</a></td><td><img id="item69" src="images/1190.png" onClick="checkValue('right',69);"><br>Aromantic Flag</td></tr><tr id="row70" style="display:none;"><td><img id="item70" src="images/1079.png" onClick="checkValue('left',70);"><br>Flower Mirror Chew Toy</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',70); return false;">Fair</a></td><td><img id="item71" src="images/1195.png" onClick="checkValue('right',71);"><br>Bi Flag</td></tr><tr id="row72" style="display:none;"><td><img id="item72" src="images/815.png" onClick="checkValue('left',72);"><br>Red Ribbon</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',72); return false;">Fair</a></td><td><img id="item73" src="images/250.png" onClick="checkValue('right',73);"><br>Snow Snowboard</td></tr><tr id="row74" style="display:none;"><td><img id="item74" src="images/914.png" onClick="checkValue('left',74);"><br>Eco Orange Leaf Wings</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',74); return false;">Fair</a></td><td><img id="item75" src="images/952.png" onClick="checkValue('right',75);"><br>Halloween Orange Pumpkin Flying Disc</td></tr><tr id="row76" style="display:none;"><td><img id="item76" src="images/399.png" onClick="checkValue('left',76);"><br>Balloons</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',76); return false;">Fair</a></td><td><img id="item77" src="images/46.png" onClick="checkValue('right',77);"><br>Snow Owl</td></tr><tr id="row78" style="display:none;"><td><img id="item78" src="images/931.png" onClick="checkValue('left',78);"><br>Eco Brown Branch Headphones</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',78); return false;">Fair</a></td><td><img id="item79" src="images/368.png" onClick="checkValue('right',79);"><br>Kangaroo Stroller</td></tr><tr id="row80" style="display:none;"><td><img id="item80" src="images/545.png" onClick="checkValue('left',80);"><br>Plate of Food Disc</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',80); return false;">Fair</a></td><td><img id="item81" src="images/559.png" onClick="checkValue('right',81);"><br>Rainbow Wand</td></tr><tr id="row82" style="display:none;"><td><img id="item82" src="images/1141.png" onClick="checkValue('left',82);"><br>Ten Gallon Hat</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',82); return false;">Fair</a></td><td><img id="item83" src="images/119.png" onClick="checkValue('right',83);"><br>Buffalo</td></tr><tr id="row84" style="display:none;"><td><img id="item84" src="images/451.png" onClick="checkValue('left',84);"><br>Dog Leash</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',84); return false;">Fair</a></td><td><img id="item85" src="images/979.png" onClick="checkValue('right',85);"><br>Gingerbread House Throw Toy</td></tr><tr id="row86" style="display:none;"><td><img id="item86" src="images/49.png" onClick="checkValue('left',86);"><br>Pig</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',86); return false;">Fair</a></td><td><img id="item87" src="images/391.png" onClick="checkValue('right',87);"><br>Amber Bone</td></tr><tr id="row88" style="display:none;"><td><img id="item88" src="images/778.png" onClick="checkValue('left',88);"><br>Party Crown</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',88); return false;">Fair</a></td><td><img id="item89" src="images/313.png" onClick="checkValue('right',89);"><br>Jasmine Tea Cup</td></tr><tr id="row90" style="display:none;"><td><img id="item90" src="images/846.png" onClick="checkValue('left',90);"><br>Sunhat</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',90); return false;">Fair</a></td><td><img id="item91" src="images/834.png" onClick="checkValue('right',91);"><br>Skis</td></tr><tr id="row92" style="display:none;"><td><img id="item92" src="images/265.png" onClick="checkValue('left',92);"><br>Witch's Caravan</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',92); return false;">Fair</a></td><td><img id="item93" src="images/784.png" onClick="checkValue('right',93);"><br>Pink Bowtie</td></tr><tr id="row94" style="display:none;"><td><img id="item94" src="images/9.png" onClick="checkValue('left',94);"><br>Diamond Dragon</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',94); return false;">Fair</a></td><td><img id="item95" src="images/327.png" onClick="checkValue('right',95);"><br>Taco</td></tr><tr id="row96" style="display:none;"><td><img id="item96" src="images/1118.png" onClick="checkValue('left',96);"><br>Bionic Arms</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',96); return false;">Fair</a></td><td><img id="item97" src="images/921.png" onClick="checkValue('right',97);"><br>Eco Orange Maple Cape</td></tr><tr id="row98" style="display:none;"><td><img id="item98" src="images/638.png" onClick="checkValue('left',98);"><br>Adventurer's Sword</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',98); return false;">Fair</a></td><td><img id="item99" src="images/170.png" onClick="checkValue('right',99);"><br>Cloud</td></tr><tr id="row100" style="display:none;"><td><img id="item100" src="images/786.png" onClick="checkValue('left',100);"><br>Pink Cap</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',100); return false;">Fair</a></td><td><img id="item101" src="images/571.png" onClick="checkValue('right',101);"><br>Santa Leash</td></tr><tr id="row102" style="display:none;"><td><img id="item102" src="images/1116.png" onClick="checkValue('left',102);"><br>Modern Jetpack</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',102); return false;">Fair</a></td><td><img id="item103" src="images/700.png" onClick="checkValue('right',103);"><br>Enby Pride Pin</td></tr><tr id="row104" style="display:none;"><td><img id="item104" src="images/680.png" onClick="checkValue('left',104);"><br>Cherry Earrings</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',104); return false;">Fair</a></td><td><img id="item105" src="images/542.png" onClick="checkValue('right',105);"><br>Peppermint Disc</td></tr><tr id="row106" style="display:none;"><td><img id="item106" src="images/626.png" onClick="checkValue('left',106);"><br>Unicorn Rattle</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',106); return false;">Fair</a></td><td><img id="item107" src="images/5.png" onClick="checkValue('right',107);"><br>Parrot</td></tr><tr id="row108" style="display:none;"><td><img id="item108" src="images/944.png" onClick="checkValue('left',108);"><br>Halloween White Skull Hat</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',108); return false;">Fair</a></td><td><img id="item109" src="images/1171.png" onClick="checkValue('right',109);"><br>Golden Albatross</td></tr><tr id="row110" style="display:none;"><td><img id="item110" src="images/552.png" onClick="checkValue('left',110);"><br>Propeller</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',110); return false;">Fair</a></td><td><img id="item111" src="images/1060.png" onClick="checkValue('right',111);"><br>Premium Log Bench</td></tr><tr id="row112" style="display:none;"><td><img id="item112" src="images/519.png" onClick="checkValue('left',112);"><br>Llama Rattle</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',112); return false;">Fair</a></td><td><img id="item113" src="images/533.png" onClick="checkValue('right',113);"><br>Mouse Chew Toy</td></tr><tr id="row114" style="display:none;"><td><img id="item114" src="images/839.png" onClick="checkValue('left',114);"><br>Spike Collar</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',114); return false;">Fair</a></td><td><img id="item115" src="images/852.png" onClick="checkValue('right',115);"><br>Turtle Shell</td></tr><tr id="row116" style="display:none;"><td><img id="item116" src="images/204.png" onClick="checkValue('left',116);"><br>Hovercar</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',116); return false;">Fair</a></td><td><img id="item117" src="images/386.png" onClick="checkValue('right',117);"><br>Triple Stroller</td></tr><tr id="row118" style="display:none;"><td><img id="item118" src="images/972.png" onClick="checkValue('left',118);"><br>Icicle Pogo Stick</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',118); return false;">Fair</a></td><td><img id="item119" src="images/826.png" onClick="checkValue('right',119);"><br>Shadow Shuriken</td></tr><tr id="row120" style="display:none;"><td><img id="item120" src="images/534.png" onClick="checkValue('left',120);"><br>Mouse Leash</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',120); return false;">Fair</a></td><td><img id="item121" src="images/1135.png" onClick="checkValue('right',121);"><br>Saucepan Hat</td></tr><tr id="row122" style="display:none;"><td><img id="item122" src="images/309.png" onClick="checkValue('left',122);"><br>Healing Apple</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',122); return false;">Fair</a></td><td><img id="item123" src="images/658.png" onClick="checkValue('right',123);"><br>Black Cozy Hood</td></tr><tr id="row124" style="display:none;"><td><img id="item124" src="images/529.png" onClick="checkValue('left',124);"><br>Mermaid Float</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',124); return false;">Fair</a></td><td><img id="item125" src="images/308.png" onClick="checkValue('right',125);"><br>Ham</td></tr><tr id="row126" style="display:none;"><td><img id="item126" src="images/1004.png" onClick="checkValue('left',126);"><br>Cactus Friend</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',126); return false;">Fair</a></td><td><img id="item127" src="images/30.png" onClick="checkValue('right',127);"><br>Crocodile</td></tr><tr id="row128" style="display:none;"><td><img id="item128" src="images/1013.png" onClick="checkValue('left',128);"><br>Nemes</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',128); return false;">Fair</a></td><td><img id="item129" src="images/490.png" onClick="checkValue('right',129);"><br>Grappling Hook</td></tr><tr id="row130" style="display:none;"><td><img id="item130" src="images/198.png" onClick="checkValue('left',130);"><br>Gold Skateboard</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',130); return false;">Fair</a></td><td><img id="item131" src="images/1091.png" onClick="checkValue('right',131);"><br>Bat Face Roller Skates</td></tr><tr id="row132" style="display:none;"><td><img id="item132" src="images/17.png" onClick="checkValue('left',132);"><br>Flamingo</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',132); return false;">Fair</a></td><td><img id="item133" src="images/104.png" onClick="checkValue('right',133);"><br>Glyptodon</td></tr><tr id="row134" style="display:none;"><td><img id="item134" src="images/892.png" onClick="checkValue('left',134);"><br>Rose Pogo</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',134); return false;">Fair</a></td><td><img id="item135" src="images/925.png" onClick="checkValue('right',135);"><br>Eco White Spider Web Badge</td></tr><tr id="row136" style="display:none;"><td><img id="item136" src="images/629.png" onClick="checkValue('left',136);"><br>Wreath Frisbee</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',136); return false;">Fair</a></td><td><img id="item137" src="images/959.png" onClick="checkValue('right',137);"><br>Puffin</td></tr><tr id="row138" style="display:none;"><td><img id="item138" src="images/355.png" onClick="checkValue('left',138);"><br>Double Stroller</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',138); return false;">Fair</a></td><td><img id="item139" src="images/482.png" onClick="checkValue('right',139);"><br>Flying Disc Umbrella</td></tr><tr id="row140" style="display:none;"><td><img id="item140" src="images/1066.png" onClick="checkValue('left',140);"><br>Hawk</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',140); return false;">Fair</a></td><td><img id="item141" src="images/1145.png" onClick="checkValue('right',141);"><br>Cowboy Boots</td></tr><tr id="row142" style="display:none;"><td><img id="item142" src="images/735.png" onClick="checkValue('left',142);"><br>Gold Tiara</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',142); return false;">Fair</a></td><td><img id="item143" src="images/567.png" onClick="checkValue('right',143);"><br>Rope Chew Toy</td></tr><tr id="row144" style="display:none;"><td><img id="item144" src="images/883.png" onClick="checkValue('left',144);"><br>Magical Princess Unicycle</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',144); return false;">Fair</a></td><td><img id="item145" src="images/604.png" onClick="checkValue('right',145);"><br>Steel Drum</td></tr><tr id="row146" style="display:none;"><td><img id="item146" src="images/635.png" onClick="checkValue('left',146);"><br>1st Place Ribbon</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',146); return false;">Fair</a></td><td><img id="item147" src="images/673.png" onClick="checkValue('right',147);"><br>Bucket Hat</td></tr><tr id="row148" style="display:none;"><td><img id="item148" src="images/171.png" onClick="checkValue('left',148);"><br>Clown Car</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',148); return false;">Fair</a></td><td><img id="item149" src="images/227.png" onClick="checkValue('right',149);"><br>Neon Pink Scooter</td></tr><tr id="row150" style="display:none;"><td><img id="item150" src="images/321.png" onClick="checkValue('left',150);"><br>Popcorn</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',150); return false;">Fair</a></td><td><img id="item151" src="images/585.png" onClick="checkValue('right',151);"><br>Soccer Ball Throw Toy</td></tr><tr id="row152" style="display:none;"><td><img id="item152" src="images/686.png" onClick="checkValue('left',152);"><br>Conductor Hat</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',152); return false;">Fair</a></td><td><img id="item153" src="images/469.png" onClick="checkValue('right',153);"><br>Fancy Umbrella</td></tr><tr id="row154" style="display:none;"><td><img id="item154" src="images/1027.png" onClick="checkValue('left',154);"><br>RGB Monster Truck</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',154); return false;">Fair</a></td><td><img id="item155" src="images/344.png" onClick="checkValue('right',155);"><br>Banana Stroller</td></tr><tr id="row156" style="display:none;"><td><img id="item156" src="images/636.png" onClick="checkValue('left',156);"><br>Ace Pride Pin</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',156); return false;">Fair</a></td><td><img id="item157" src="images/343.png" onClick="checkValue('right',157);"><br>Balloon Stroller</td></tr><tr id="row158" style="display:none;"><td><img id="item158" src="images/302.png" onClick="checkValue('left',158);"><br>Coffee</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',158); return false;">Fair</a></td><td><img id="item159" src="images/248.png" onClick="checkValue('right',159);"><br>Santa's Sleigh</td></tr><tr id="row160" style="display:none;"><td><img id="item160" src="images/706.png" onClick="checkValue('left',160);"><br>Kirin</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',160); return false;">Fair</a></td><td><img id="item161" src="images/167.png" onClick="checkValue('right',161);"><br>Camper Van</td></tr><tr id="row162" style="display:none;"><td><img id="item162" src="images/155.png" onClick="checkValue('left',162);"><br>Bethink Skateboard</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',162); return false;">Fair</a></td><td><img id="item163" src="images/577.png" onClick="checkValue('right',163);"><br>Skeleton Pogo Stick</td></tr><tr id="row164" style="display:none;"><td><img id="item164" src="images/14.png" onClick="checkValue('left',164);"><br>Monkey King</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',164); return false;">Fair</a></td><td><img id="item165" src="images/307.png" onClick="checkValue('right',165);"><br>Green Tea Cup</td></tr><tr id="row166" style="display:none;"><td><img id="item166" src="images/405.png" onClick="checkValue('left',166);"><br>Bone Throw Toy</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',166); return false;">Fair</a></td><td><img id="item167" src="images/83.png" onClick="checkValue('right',167);"><br>Musk Ox</td></tr><tr id="row168" style="display:none;"><td><img id="item168" src="images/719.png" onClick="checkValue('left',168);"><br>Flamenco Hat</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',168); return false;">Fair</a></td><td><img id="item169" src="images/296.png" onClick="checkValue('right',169);"><br>Cheese</td></tr><tr id="row170" style="display:none;"><td><img id="item170" src="images/384.png" onClick="checkValue('left',170);"><br>Throne Stroller</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',170); return false;">Fair</a></td><td><img id="item171" src="images/356.png" onClick="checkValue('right',171);"><br>Droplet Stroller</td></tr><tr id="row172" style="display:none;"><td><img id="item172" src="images/799.png" onClick="checkValue('left',172);"><br>Pretty Red Bow</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',172); return false;">Fair</a></td><td><img id="item173" src="images/716.png" onClick="checkValue('right',173);"><br>Fez Hat</td></tr><tr id="row174" style="display:none;"><td><img id="item174" src="images/149.png" onClick="checkValue('left',174);"><br>Adopt Me Girl Scooter</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',174); return false;">Fair</a></td><td><img id="item175" src="images/348.png" onClick="checkValue('right',175);"><br>Catapult Stroller</td></tr><tr id="row176" style="display:none;"><td><img id="item176" src="images/443.png" onClick="checkValue('left',176);"><br>Crystal Ball Rattle</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',176); return false;">Fair</a></td><td><img id="item177" src="images/221.png" onClick="checkValue('right',177);"><br>Neon Blue Scooter</td></tr><tr id="row178" style="display:none;"><td><img id="item178" src="images/660.png" onClick="checkValue('left',178);"><br>Black Fedora</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',178); return false;">Fair</a></td><td><img id="item179" src="images/828.png" onClick="checkValue('right',179);"><br>Shark Fin</td></tr><tr id="row180" style="display:none;"><td><img id="item180" src="images/1014.png" onClick="checkValue('left',180);"><br>Lotus Earrings</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',180); return false;">Fair</a></td><td><img id="item181" src="images/1078.png" onClick="checkValue('right',181);"><br>Bat Key Pogo Stick</td></tr><tr id="row182" style="display:none;"><td><img id="item182" src="images/407.png" onClick="checkValue('left',182);"><br>Bongos</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',182); return false;">Fair</a></td><td><img id="item183" src="images/10.png" onClick="checkValue('right',183);"><br>Diamond Unicorn</td></tr><tr id="row184" style="display:none;"><td><img id="item184" src="images/634.png" onClick="checkValue('left',184);"><br>Speedboat</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',184); return false;">Fair</a></td><td><img id="item185" src="images/421.png" onClick="checkValue('right',185);"><br>Celestial Leash</td></tr><tr id="row186" style="display:none;"><td><img id="item186" src="images/866.png" onClick="checkValue('left',186);"><br>White Visor</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',186); return false;">Fair</a></td><td><img id="item187" src="images/507.png" onClick="checkValue('right',187);"><br>Inflatable Sword</td></tr><tr id="row188" style="display:none;"><td><img id="item188" src="images/876.png" onClick="checkValue('left',188);"><br>Yellow Beanie</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',188); return false;">Fair</a></td><td><img id="item189" src="images/1182.png" onClick="checkValue('right',189);"><br>Pride Wings</td></tr><tr id="row190" style="display:none;"><td><img id="item190" src="images/896.png" onClick="checkValue('left',190);"><br>Cactus Grappling Hook</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',190); return false;">Fair</a></td><td><img id="item191" src="images/982.png" onClick="checkValue('right',191);"><br>Festive Snow Globe Rattle</td></tr><tr id="row192" style="display:none;"><td><img id="item192" src="images/190.png" onClick="checkValue('left',192);"><br>Ghost Vehicle</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',192); return false;">Fair</a></td><td><img id="item193" src="images/1204.png" onClick="checkValue('right',193);"><br>Space Whale</td></tr><tr id="row194" style="display:none;"><td><img id="item194" src="images/261.png" onClick="checkValue('left',194);"><br>White Neon Snowboard</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',194); return false;">Fair</a></td><td><img id="item195" src="images/557.png" onClick="checkValue('right',195);"><br>Rabbit Rattle</td></tr><tr id="row196" style="display:none;"><td><img id="item196" src="images/299.png" onClick="checkValue('left',196);"><br>Chocolate Egg</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',196); return false;">Fair</a></td><td><img id="item197" src="images/16.png" onClick="checkValue('right',197);"><br>Turtle</td></tr><tr id="row198" style="display:none;"><td><img id="item198" src="images/783.png" onClick="checkValue('left',198);"><br>Pink Boots</td><td><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="checkValue('fair',198); return false;">Fair</a></td><td><img id="item199" src="images/462.png" onClick="checkValue('right',199);"><br>Egg Rattle</td></tr><tr id="row200" style="display:none;"><td colspan=2>Wow! Great Job! You got a perfect score of 100 points!<br>You really know your values! Congratulations!<br><a href="know-your-values-game.html">Play Again</a></td></tr><tr id="row202" style="display:none;"><td colspan=2>Nice try, Game over!<br><div id="message"></div><br><br><div id="playagain" onClick="playagainloading();"><a class="wflbutton" style="font-size:24px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="know-your-values-game.html">Play Again</a></div><br><div id="message"></div></td></tr></table><br>
+<style>
+.mf_responsive_1 { width: 300px; height: 250px; }
+@media(min-width: 500px) { .mf_responsive_1 { width: 300px; height: 250px; } }
+@media(min-width: 800px) { .mf_responsive_1 { width: 300px; height: 250px; } }
+</style>
+<script async src="../pagead2.googlesyndication.com/pagead/js/f3750.txt?client=ca-pub-5814941088162332" crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle mf_responsive_1" style="display:inline-block;min-width:400px;max-width:970px;width:100%;" data-full-width-responsive="true" data-ad-client="ca-pub-5814941088162332" data-ad-slot="1545665476"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br><br><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="know-your-values-gameafb6.html?mode=highscores">View High Scores</a>
+<br><br><br>
+</div>
+</div>
+</div>
+<div align="center">
+
+<script async src="../pagead2.googlesyndication.com/pagead/js/f3750.txt?client=ca-pub-5814941088162332" crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5814941088162332" data-ad-slot="7684926393" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+<br><br>
+<div align="center"><i>Last updated July 7, 2022</i> - <a href="updates.html">View Update Log</a> | <a href="privacypolicy.html">Privacy Policy</a></div><br><br>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-40249HE5LR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-40249HE5LR');
+</script>
+<script type="text/javascript" src="../s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60ba7e2fc1d62d27"></script>
+</body>
+
+<!-- Mirrored from adoptmetradingvalues.com/know-your-values-game.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jul 2022 20:41:21 GMT -->
+</html>

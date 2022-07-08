@@ -1,0 +1,244 @@
+<html>
+
+<!-- Mirrored from adoptmetradingvalues.com/pet-value-list-view.php?v=1 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jul 2022 19:48:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script data-ad-client="ca-pub-5814941088162332" async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script src="../cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js" integrity="sha512-zYXldzJsDrNKV+odAwFYiDXV2Cy37cwizT+NkuiPGsa9X1dOz04eHvUWVuxaJ299GvcJT31ug2zO4itXBjFx4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="icon" type="image/png" href="favicon.png" />
+<title>Roblox Adopt Me Trading Values - View User Created Value Lists</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<style>
+.tradezonevaluelist {
+  background-color: #CDFFE6;
+  border-radius: 25px;
+  margin:2% 8% 2% 8%;
+  text-align:left;
+}
+.outergridvaluelist {
+ # display: grid;
+ # grid-template-columns: 100%;
+  background-color: #CDFFE6;
+  padding: 10px;
+  border-radius: 25px;
+  max-width:80%;
+  margin: 0 auto;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.container {
+ # display: grid;
+ # grid-template-columns: repeat(5, 1fr);
+ # gap: 10px;
+ width:100%;
+ background-color:#eee;
+}
+
+.column{
+  #  flex-basis: 20%;
+  #  background: #eee;
+    min-height: 50px;
+    padding: 10px;
+    border-radius: 10px;
+	margin 10px;
+	width:100%;
+	min-width:600px;
+	max-width:100%;
+	# border-top: 5px solid #66dd99;
+}
+
+.list-group-item {
+  border: 3px solid #666;
+  background-color: #eee;
+  border-radius: .5em;
+  padding: 3px;
+  float:left;
+}
+.list-group-item.over {
+  border: 3px dotted #666;
+}
+.invisible{
+    display: none;
+}
+
+.button {
+   text-align: center;
+    margin-right: 0.5rem;
+	border-radius: 50%;
+      padding: 0.25em 0.5em;
+	  border:2px solid black;
+	  font-weight:bold;
+	  font-size:16px;
+}
+</style>
+</head>
+<body bgcolor="#bbddff">
+<style>
+.login {
+	box-sizing: border-box;
+  	font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+  	font-size: 16px;
+  	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+  	width: 400px;
+  	background-color: #ffffff;
+  	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+  	margin: 300px auto;
+}
+.login h1 {
+  	text-align: center;
+  	color: #5b6574;
+  	font-size: 24px;
+  	padding: 20px 0 20px 0;
+  	border-bottom: 2px solid #23b574;
+}
+.login form {
+  	display: flex;
+  	flex-wrap: wrap;
+  	justify-content: center;
+  	padding-top: 20px;
+}
+.login form label {
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	width: 50px;
+  	height: 50px;
+  	background-color: #23b574;
+  	color: #ffffff;
+}
+.login form input[type="password"], .login form input[type="text"] {
+  	width: 310px;
+  	height: 50px;
+  	border: 1px solid #dee0e4;
+  	margin-bottom: 20px;
+  	padding: 0 15px;
+}
+.login form input[type="submit"] {
+  	width: 100%;
+  	padding: 15px;
+ 	margin-top: 20px;
+  	background-color: #23b574;
+  	border: 0;
+  	cursor: pointer;
+  	font-weight: bold;
+  	color: #ffffff;
+  	transition: background-color 0.2s;
+}
+.login form input[type="submit"]:hover {
+	background-color: #6633cc;
+  	transition: background-color 0.2s;
+}
+</style>
+<div align="right" style="font-size:24px;"> <a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="document.getElementById('modalboomlogin').style.visibility='visible'; return false;">Log In</a> <a class="wflbutton" style="font-size:22px; margin-right:25px; background-color:#6633cc; min-width:50px;" href="register.html">Sign Up</a> <a href="#"><img src="images/help.png" alt="?" title="Help" style="margin-right:3px; width:30px; vertical-align:middle; height:30px;" onClick="document.getElementById('videohelp2').style.visibility='visible'; return false;"></a>
+</div>
+<div id="videohelp2" style="position:fixed; visibility:hidden; padding:2% 5% 5% 5%; z-index: 8; background-color:#CDFFE6; min-width:50%; min-height:50%; top:25%; left:25%; margin-left:-5%; margin-top:-10% display: inline-block; cursor: pointer; border:1px solid black; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; overflow: auto;	border-radius: 25px; text-align:center;">
+<div class="popupgridcloser"><span onClick="document.getElementById('videohelp2').style.visibility='hidden'; document.getElementById('bighelpvid2').src='https://www.youtube.com/embed/dq1N_-GQtEc';" style="font-size:20px; color:#ffffff; background-color:#ee2222; padding:4px; font-weight:bold;"> X </span><br></div>
+<span style="text-align:center;">Find Fair Trades Quickly<br>
+AdoptMeTradingValues.com How-To Video<br><br></span>
+<iframe id="bighelpvid2" width="640" height="390" src="https://www.youtube.com/embed/dq1N_-GQtEc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="modal" id="modalboomlogin"><div class="login" id="loginscreen">
+<div class="popupgridcloser" style="background-color:unset;"><span style="padding-right:45%; font-size:26px;">Log In</span> <span onClick="document.getElementById('modalboomlogin').style.visibility='hidden';" style="font-size:20px; color:#ffffff; background-color:#ee2222; padding:4px; font-weight:bold;"> X </span></div>
+<form action="https://adoptmetradingvalues.com/home.php" method="post">
+<label for="username">
+<img src="username.png" alt="UN" style="height:30px; width:30px;">
+</label>
+<input type="text" name="username" placeholder="Username" id="username" required>
+<label for="password">
+<img src="password.png" alt="PW" style="height:30px; width:30px;">
+</label>
+<input type="password" name="password" placeholder="Password" id="password" required>
+<br><span align="center" style="font-size:small;"><a href="forgotpw.html">Forgot Password</a></span><br>
+<input type="submit" value="Login">
+</form>
+</div></div><div align="center"><img src="images/header.png" alt="Roblox Adopt Me Trading Values">
+<ul align="center">
+<li><a href="index-2.html">W/F/L</a></li>
+<li><a class="active" href="pet-value-list.html">Pet Value List</a></li>
+<li><a href="play-games.html">Games</a></li>
+<li><a href="videos.html">Videos</a></li>
+<li><a href="tips-to-get-rich.html">Tips</a></li>
+<li><a href="roblox-adopt-me.html">About</a></li>
+</ul>
+</div>
+<div align="center">
+<script async src="../pagead2.googlesyndication.com/pagead/js/f3750.txt?client=ca-pub-5814941088162332" crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5814941088162332" data-ad-slot="7684926393" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="tradezonevaluelist">
+<div class="outergridvaluelist">
+<div align="center"><div align="center"><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="pet-value-list-create-your-own.html">Make Your Own Value List</a> <a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="pet-value-list-view.html">View Your Value Lists</a></div><div align="center"><span style="font-size:24px;"><u>MVPs (Most Valuable Pets) - View User Created Value Lists</u></span></div><br><span style="font-size:20px;">Other Users' Value Lists</span><br><br><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="pet-value-list-view8276.html?v=1&amp;sort=2">Show Newest Value Lists</a><br><table class="styled-table"><th>List #</th><th>Username</th><th>Type</th><th>Last Updated</th><th>Likes</th><th>Levels</th></tr><tr><td><a href="pet-value-list-view4411.html?id=37">37</a></td><td>lindseyj07</td><td>Pets</td><td>2022-06-02 14:25:13</td><td>238</td><td>63</td></tr><tr><td><a href="pet-value-list-view9bb2.html?id=111">111</a></td><td>kevmali</td><td>Pets</td><td>2022-07-01 09:01:13</td><td>47</td><td>51</td></tr><tr><td><a href="pet-value-list-view6396.html?id=42">42</a></td><td>CloudyVibesFR</td><td>Everything</td><td>2022-06-02 14:42:20</td><td>20</td><td>90</td></tr><tr><td><a href="pet-value-list-viewff44.html?id=423">423</a></td><td>Alonsobea</td><td>Pets</td><td>2022-06-03 20:03:18</td><td>15</td><td>55</td></tr><tr><td><a href="pet-value-list-view2fc6.html?id=61">61</a></td><td>ArcherQueen811</td><td>Pets</td><td>2022-06-02 15:24:25</td><td>14</td><td>64</td></tr><tr><td><a href="pet-value-list-view85b6.html?id=1085">1085</a></td><td>NoobMaster102222</td><td>Pets</td><td>2022-06-08 08:45:55</td><td>12</td><td>63</td></tr><tr><td><a href="pet-value-list-viewb567.html?id=279">279</a></td><td>Dalmatian</td><td>Pets</td><td>2022-06-27 12:29:58</td><td>10</td><td>55</td></tr><tr><td><a href="pet-value-list-viewa857.html?id=569">569</a></td><td>MegaNeonBatDragon</td><td>Vehicles</td><td>2022-06-04 11:35:42</td><td>8</td><td>47</td></tr><tr><td><a href="pet-value-list-viewb27c.html?id=69">69</a></td><td>IamDeven</td><td>Everything</td><td>2022-06-02 16:08:06</td><td>6</td><td>103</td></tr><tr><td><a href="pet-value-list-viewea25.html?id=24">24</a></td><td>Khaotix360</td><td>Pets</td><td>2022-06-02 13:54:39</td><td>6</td><td>65</td></tr><tr><td><a href="pet-value-list-view7832.html?id=1690">1690</a></td><td>LukePink22y</td><td>Pets</td><td>2022-06-14 17:47:20</td><td>5</td><td>58</td></tr><tr><td><a href="pet-value-list-view0284.html?id=366">366</a></td><td>Harperandlily</td><td>Pets</td><td>2022-06-03 12:56:37</td><td>5</td><td>62</td></tr><tr><td><a href="pet-value-list-view132f.html?id=101">101</a></td><td>Ariel2321</td><td>Pets</td><td>2022-06-02 17:48:08</td><td>5</td><td>58</td></tr><tr><td><a href="pet-value-list-viewe27e.html?id=76">76</a></td><td>Saquex</td><td>Pets</td><td>2022-06-22 16:29:47</td><td>5</td><td>62</td></tr><tr><td><a href="pet-value-list-view75be.html?id=2311">2311</a></td><td>PurpleRocks321</td><td>Pets</td><td>2022-06-24 09:59:52</td><td>4</td><td>32</td></tr><tr><td><a href="pet-value-list-view62e9.html?id=1189">1189</a></td><td>Toupette</td><td>Pets</td><td>2022-06-09 08:51:47</td><td>4</td><td>62</td></tr><tr><td><a href="pet-value-list-view9e43.html?id=25">25</a></td><td>peritwinklestar</td><td>Pets</td><td>2022-06-02 13:58:46</td><td>4</td><td>70</td></tr><tr><td><a href="pet-value-list-viewaddd.html?id=2574">2574</a></td><td>BraydonThePro1234</td><td>Pets</td><td>2022-06-28 09:36:31</td><td>3</td><td>103</td></tr><tr><td><a href="pet-value-list-viewe4d9.html?id=2297">2297</a></td><td>AlexXDDDDDD</td><td>Pets</td><td>2022-06-24 04:52:43</td><td>3</td><td>3</td></tr><tr><td><a href="pet-value-list-view0c97.html?id=1772">1772</a></td><td>Thebestever</td><td>Pets</td><td>2022-06-16 09:29:53</td><td>3</td><td>57</td></tr><tr><td><a href="pet-value-list-viewa62e.html?id=1513">1513</a></td><td>Creepywilliamliamotaslend</td><td>Pets</td><td>2022-06-12 10:30:31</td><td>3</td><td>60</td></tr><tr><td><a href="pet-value-list-view9f05.html?id=581">581</a></td><td>Pou</td><td>Pets</td><td>2022-06-04 12:27:46</td><td>3</td><td>62</td></tr><tr><td><a href="pet-value-list-viewf900.html?id=413">413</a></td><td>MightYMann123</td><td>Pets</td><td>2022-06-22 17:44:36</td><td>3</td><td>62</td></tr><tr><td><a href="pet-value-list-viewc1fb.html?id=209">209</a></td><td>TOPT</td><td>Pets</td><td>2022-06-03 01:27:17</td><td>3</td><td>67</td></tr><tr><td><a href="pet-value-list-view5aaa.html?id=68">68</a></td><td>Hog</td><td>Pets</td><td>2022-06-02 16:07:35</td><td>3</td><td>67</td></tr><tr><td><a href="pet-value-list-viewc42b.html?id=3796">3796</a></td><td>Lilylamaswapa</td><td>Pets</td><td>2022-06-30 18:25:43</td><td>2</td><td>57</td></tr><tr><td><a href="pet-value-list-view3315.html?id=2415">2415</a></td><td>kingathe400</td><td>Pets</td><td>2022-06-25 16:20:45</td><td>2</td><td>53</td></tr><tr><td><a href="pet-value-list-viewf593.html?id=2273">2273</a></td><td>gamerAlan686</td><td>Pets</td><td>2022-06-23 19:15:43</td><td>2</td><td>59</td></tr><tr><td><a href="pet-value-list-viewc3d1.html?id=2057">2057</a></td><td>Akirazz</td><td>Pets</td><td>2022-06-20 06:36:21</td><td>2</td><td>61</td></tr><tr><td><a href="pet-value-list-view0b41.html?id=1717">1717</a></td><td>OllieTheCat721114</td><td>Vehicles</td><td>2022-06-15 06:57:42</td><td>2</td><td>50</td></tr><tr><td><a href="pet-value-list-viewfbeb.html?id=996">996</a></td><td>Bellajaxi</td><td>Pets</td><td>2022-06-07 09:46:39</td><td>2</td><td>61</td></tr><tr><td><a href="pet-value-list-view2d7c.html?id=855">855</a></td><td>Heyitzane</td><td>Pets</td><td>2022-06-06 03:51:33</td><td>2</td><td>62</td></tr><tr><td><a href="pet-value-list-view47a7.html?id=544">544</a></td><td>MadMan</td><td>Pets</td><td>2022-06-04 09:16:53</td><td>2</td><td>57</td></tr><tr><td><a href="pet-value-list-view0fbe.html?id=438">438</a></td><td>XineGamerGirl</td><td>Pets</td><td>2022-06-03 22:19:50</td><td>2</td><td>62</td></tr><tr><td><a href="pet-value-list-view9b58.html?id=354">354</a></td><td>mak</td><td>Everything</td><td>2022-06-03 12:08:08</td><td>2</td><td>102</td></tr><tr><td><a href="pet-value-list-viewfc9a.html?id=308">308</a></td><td>Burnerbone</td><td>Everything</td><td>2022-06-03 09:29:38</td><td>2</td><td>102</td></tr><tr><td><a href="pet-value-list-viewdc59.html?id=290">290</a></td><td>Crown</td><td>Pets</td><td>2022-06-03 08:13:51</td><td>2</td><td>65</td></tr><tr><td><a href="pet-value-list-view7513.html?id=289">289</a></td><td>Ilikethings</td><td>Pets</td><td>2022-06-03 08:06:50</td><td>2</td><td>71</td></tr><tr><td><a href="pet-value-list-viewb4d1.html?id=190">190</a></td><td>Kkccmm</td><td>Pets</td><td>2022-06-02 23:49:21</td><td>2</td><td>59</td></tr><tr><td><a href="pet-value-list-view40ac.html?id=35">35</a></td><td>Layan</td><td>Pets</td><td>2022-06-02 14:22:27</td><td>2</td><td>66</td></tr><tr><td><a href="pet-value-list-view3162.html?id=26">26</a></td><td>Vibinxtyler</td><td>Pets</td><td>2022-06-02 14:03:31</td><td>2</td><td>68</td></tr><tr><td><a href="pet-value-list-view346c.html?id=4175">4175</a></td><td>Yenskim</td><td>Pets</td><td>2022-07-07 08:18:52</td><td>1</td><td>58</td></tr><tr><td><a href="pet-value-list-viewbeb1.html?id=4097">4097</a></td><td>goodhaley</td><td>Pets</td><td>2022-07-06 00:04:56</td><td>1</td><td>55</td></tr><tr><td><a href="pet-value-list-viewaeab.html?id=4054">4054</a></td><td>Ilaria1pussola</td><td>Everything</td><td>2022-07-05 06:52:08</td><td>1</td><td>95</td></tr><tr><td><a href="pet-value-list-view41d8.html?id=4033">4033</a></td><td>Isla1234</td><td>Pets</td><td>2022-07-04 23:13:10</td><td>1</td><td>59</td></tr><tr><td><a href="pet-value-list-view7568.html?id=3992">3992</a></td><td>hello1236273</td><td>Pets</td><td>2022-07-04 02:06:39</td><td>1</td><td>2</td></tr><tr><td><a href="pet-value-list-viewfa2a.html?id=3825">3825</a></td><td>Yenskim</td><td>Pets</td><td>2022-07-01 08:15:47</td><td>1</td><td>67</td></tr><tr><td><a href="pet-value-list-view028c.html?id=3805">3805</a></td><td>Milasbackup1010</td><td>Pets</td><td>2022-06-30 20:46:48</td><td>1</td><td>59</td></tr><tr><td><a href="pet-value-list-view2682.html?id=3786">3786</a></td><td>Ser</td><td>Pets</td><td>2022-06-30 14:08:31</td><td>1</td><td>59</td></tr><tr><td><a href="pet-value-list-view4ded.html?id=3773">3773</a></td><td>Lean8283</td><td>Pets</td><td>2022-06-30 12:37:51</td><td>1</td><td>60</td></tr><tr><td><a href="pet-value-list-view675f.html?id=3749">3749</a></td><td>BatDragonLover91</td><td>Pets</td><td>2022-06-30 05:20:44</td><td>1</td><td>59</td></tr><tr><td><a href="pet-value-list-view3caf.html?id=2599">2599</a></td><td>briannaltheax</td><td>Pets</td><td>2022-06-28 21:49:05</td><td>1</td><td>60</td></tr><tr><td><a href="pet-value-list-view65ae.html?id=2595">2595</a></td><td>Justaruna</td><td>Pets</td><td>2022-06-28 17:44:16</td><td>1</td><td>60</td></tr><tr><td><a href="pet-value-list-view9083.html?id=2576">2576</a></td><td>Ashleah12</td><td>Pets</td><td>2022-06-28 10:03:58</td><td>1</td><td>58</td></tr><tr><td><a href="pet-value-list-view840b.html?id=2570">2570</a></td><td>Rzone2gx</td><td>Pets</td><td>2022-06-28 08:11:50</td><td>1</td><td>59</td></tr><tr><td><a href="pet-value-list-view7a46.html?id=2476">2476</a></td><td>Carlos333</td><td>Pets</td><td>2022-06-28 15:12:53</td><td>1</td><td>82</td></tr><tr><td><a href="pet-value-list-view636b.html?id=2427">2427</a></td><td>VASIALEXA</td><td>Pets</td><td>2022-06-26 11:38:28</td><td>1</td><td>35</td></tr><tr><td><a href="pet-value-list-viewba80.html?id=2412">2412</a></td><td>M4lSIE</td><td>Pets</td><td>2022-06-27 07:36:02</td><td>1</td><td>48</td></tr><tr><td><a href="pet-value-list-view21f0.html?id=2411">2411</a></td><td>Itzhanna</td><td>Strollers</td><td>2022-06-25 15:13:21</td><td>1</td><td>28</td></tr><tr><td><a href="pet-value-list-view5ef8.html?id=2224">2224</a></td><td>isaxtrading</td><td>Pets</td><td>2022-06-23 01:02:45</td><td>1</td><td>60</td></tr><tr><td><a href="pet-value-list-view4ecd.html?id=2171">2171</a></td><td>Alpha03</td><td>Vehicles</td><td>2022-06-22 07:09:29</td><td>1</td><td>45</td></tr><tr><td><a href="pet-value-list-view9315.html?id=2147">2147</a></td><td>Squirrels</td><td>Pets</td><td>2022-06-21 19:28:21</td><td>1</td><td>60</td></tr><tr><td><a href="pet-value-list-viewe3d5.html?id=2146">2146</a></td><td>Thecooladopttrader</td><td>Pets</td><td>2022-06-21 18:59:25</td><td>1</td><td>59</td></tr><tr><td><a href="pet-value-list-view7b57.html?id=2134">2134</a></td><td>sky02twig</td><td>Pets</td><td>2022-06-21 14:58:24</td><td>1</td><td>48</td></tr><tr><td><a href="pet-value-list-view34fe.html?id=2081">2081</a></td><td>nulldevi</td><td>Pets</td><td>2022-06-20 13:36:11</td><td>1</td><td>60</td></tr><tr><td><a href="pet-value-list-viewc951.html?id=1945">1945</a></td><td>khan2568976</td><td>Pets</td><td>2022-06-18 15:03:28</td><td>1</td><td>60</td></tr><tr><td><a href="pet-value-list-view22a7.html?id=1893">1893</a></td><td>Bosco1111</td><td>Pets</td><td>2022-06-17 23:58:45</td><td>1</td><td>60</td></tr><tr><td><a href="pet-value-list-viewe558.html?id=1811">1811</a></td><td>AniaTheOnion123</td><td>Pets</td><td>2022-06-16 22:39:50</td><td>1</td><td>60</td></tr><tr><td><a href="pet-value-list-view83c4.html?id=1677">1677</a></td><td>EmilyBarkiss</td><td>Pets</td><td>2022-06-14 15:14:59</td><td>1</td><td>18</td></tr><tr><td><a href="pet-value-list-view76a9.html?id=1661">1661</a></td><td>HUHUHU</td><td>Pets</td><td>2022-06-14 10:31:12</td><td>1</td><td>55</td></tr><tr><td><a href="pet-value-list-view6ddb.html?id=1633">1633</a></td><td>GamerUntilMidnight</td><td>Pets</td><td>2022-06-17 18:03:23</td><td>1</td><td>49</td></tr><tr><td><a href="pet-value-list-view6bb9.html?id=1620">1620</a></td><td>ILOVETURTLES12345</td><td>Pets</td><td>2022-06-13 17:59:13</td><td>1</td><td>61</td></tr><tr><td><a href="pet-value-list-viewc35d.html?id=1609">1609</a></td><td>Kaugamer</td><td>Pets</td><td>2022-06-13 13:56:55</td><td>1</td><td>59</td></tr><tr><td><a href="pet-value-list-viewc82e.html?id=1598">1598</a></td><td>JakeJohnFoxAndHisBrother</td><td>Petsvehicles</td><td>2022-06-13 11:59:46</td><td>1</td><td>75</td></tr><tr><td><a href="pet-value-list-view35fb.html?id=1552">1552</a></td><td>Evilunicorn</td><td>Everything</td><td>2022-06-12 20:43:55</td><td>1</td><td>100</td></tr><tr><td><a href="pet-value-list-view254f.html?id=1390">1390</a></td><td>ph3360</td><td>Pets</td><td>2022-06-25 07:09:29</td><td>1</td><td>60</td></tr><tr><td><a href="pet-value-list-view4747.html?id=1285">1285</a></td><td>lelelelelle</td><td>Pets</td><td>2022-06-10 06:11:47</td><td>1</td><td>60</td></tr><tr><td><a href="pet-value-list-view1a5c.html?id=1284">1284</a></td><td>DemonPig</td><td>Pets</td><td>2022-06-10 06:02:40</td><td>1</td><td>64</td></tr><tr><td><a href="pet-value-list-view22d4.html?id=1283">1283</a></td><td>Iwantpizaaa</td><td>Pets</td><td>2022-06-10 05:23:11</td><td>1</td><td>66</td></tr><tr><td><a href="pet-value-list-view8677.html?id=1280">1280</a></td><td>SweetyBelle</td><td>Pets</td><td>2022-06-10 04:50:16</td><td>1</td><td>60</td></tr><tr><td><a href="pet-value-list-viewee46.html?id=1259">1259</a></td><td>Howtogetrich</td><td>Everything</td><td>2022-06-09 21:54:07</td><td>1</td><td>98</td></tr><tr><td><a href="pet-value-list-view339f.html?id=1193">1193</a></td><td>Edvinsal</td><td>Pets</td><td>2022-06-09 09:03:08</td><td>1</td><td>63</td></tr><tr><td><a href="pet-value-list-viewa727.html?id=1190">1190</a></td><td>Chocopop</td><td>Pets</td><td>2022-06-09 08:52:11</td><td>1</td><td>62</td></tr><tr><td><a href="pet-value-list-viewf614.html?id=1186">1186</a></td><td>Chocopop</td><td>Pets</td><td>2022-06-09 08:39:02</td><td>1</td><td>55</td></tr><tr><td><a href="pet-value-list-view2b84.html?id=1127">1127</a></td><td>consonvo</td><td>Pets</td><td>2022-06-08 16:23:57</td><td>1</td><td>62</td></tr><tr><td><a href="pet-value-list-viewa6db.html?id=1097">1097</a></td><td>UltraZero</td><td>Pets</td><td>2022-06-08 10:48:09</td><td>1</td><td>62</td></tr><tr><td><a href="pet-value-list-view586f.html?id=1082">1082</a></td><td>Zazza</td><td>Pets</td><td>2022-06-08 08:20:32</td><td>1</td><td>65</td></tr><tr><td><a href="pet-value-list-view3f39.html?id=1016">1016</a></td><td>idklowllls</td><td>Pets</td><td>2022-06-07 13:17:33</td><td>1</td><td>64</td></tr><tr><td><a href="pet-value-list-view1daa.html?id=1002">1002</a></td><td>Funnnnnycat</td><td>Pets</td><td>2022-06-07 11:12:35</td><td>1</td><td>59</td></tr><tr><td><a href="pet-value-list-viewab4d.html?id=991">991</a></td><td>Siskkskddk</td><td>Pets</td><td>2022-06-07 09:02:23</td><td>1</td><td>62</td></tr><tr><td><a href="pet-value-list-view6567.html?id=931">931</a></td><td>12kittyprincess12</td><td>Pets</td><td>2022-06-06 18:05:36</td><td>1</td><td>57</td></tr><tr><td><a href="pet-value-list-view8bfd.html?id=892">892</a></td><td>firstangel13brother</td><td>Pets</td><td>2022-06-06 09:58:27</td><td>1</td><td>62</td></tr><tr><td><a href="pet-value-list-viewcee5.html?id=880">880</a></td><td>huang</td><td>Pets</td><td>2022-06-06 08:39:40</td><td>1</td><td>58</td></tr><tr><td><a href="pet-value-list-view44f2.html?id=812">812</a></td><td>LilyDaKitty</td><td>Pets</td><td>2022-06-05 20:17:44</td><td>1</td><td>61</td></tr><tr><td><a href="pet-value-list-view55a8.html?id=783">783</a></td><td>Gachaio2</td><td>Pets</td><td>2022-06-05 14:34:51</td><td>1</td><td>55</td></tr><tr><td><a href="pet-value-list-viewf756.html?id=766">766</a></td><td>itsJade</td><td>Pets</td><td>2022-06-05 12:37:26</td><td>1</td><td>62</td></tr><tr><td><a href="pet-value-list-view8466.html?id=759">759</a></td><td>LuvlyxSunny</td><td>Pets</td><td>2022-06-05 12:06:06</td><td>1</td><td>53</td></tr><tr><td><a href="pet-value-list-viewb5e5.html?id=718">718</a></td><td>promegarock</td><td>Pets</td><td>2022-06-05 07:56:31</td><td>1</td><td>62</td></tr><tr><td><a href="pet-value-list-viewadd1.html?id=709">709</a></td><td>Refurinn</td><td>Pets</td><td>2022-06-05 06:15:08</td><td>1</td><td>76</td></tr><tr><td><a href="pet-value-list-view9715.html?id=693">693</a></td><td>Tenacitiee</td><td>Pets</td><td>2022-06-05 04:00:40</td><td>1</td><td>62</td></tr></table><br><br><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="pet-value-list-create-your-own.html">Make Your Own Value List</a> <a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="pet-value-list-view.html">View Your Own Value List(s)</a><br><br>
+<script>
+function like(id) {			
+	document.getElementById("liketext").innerHTML="<div align='center'><img src='loading2.gif' alt='Loading'></div>";
+	var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("liketext").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET.html", "like5445.html?id="+id+"&rand="+Math.random(), true);
+    xmlhttp.send();
+}
+</script>
+</div>
+<br><br>
+</div>
+<div align="center">
+
+<script async src="../pagead2.googlesyndication.com/pagead/js/f3750.txt?client=ca-pub-5814941088162332" crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5814941088162332" data-ad-slot="7684926393" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+<br><br>
+<div align="center"><i>Last updated July 7, 2022</i> - <a href="updates.html">View Update Log</a> | <a href="privacypolicy.html">Privacy Policy</a></div><br><br>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-40249HE5LR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-40249HE5LR');
+</script>
+<script type="text/javascript" src="../s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60ba7e2fc1d62d27"></script>
+</body>
+
+<!-- Mirrored from adoptmetradingvalues.com/pet-value-list-view.php?v=1 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jul 2022 19:49:15 GMT -->
+</html>

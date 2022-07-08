@@ -1,0 +1,244 @@
+<html>
+
+<!-- Mirrored from adoptmetradingvalues.com/pet-value-list-view.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jul 2022 20:41:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script data-ad-client="ca-pub-5814941088162332" async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script src="../cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js" integrity="sha512-zYXldzJsDrNKV+odAwFYiDXV2Cy37cwizT+NkuiPGsa9X1dOz04eHvUWVuxaJ299GvcJT31ug2zO4itXBjFx4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="icon" type="image/png" href="favicon.png" />
+<title>Roblox Adopt Me Trading Values - View User Created Value Lists</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<style>
+.tradezonevaluelist {
+  background-color: #CDFFE6;
+  border-radius: 25px;
+  margin:2% 8% 2% 8%;
+  text-align:left;
+}
+.outergridvaluelist {
+ # display: grid;
+ # grid-template-columns: 100%;
+  background-color: #CDFFE6;
+  padding: 10px;
+  border-radius: 25px;
+  max-width:80%;
+  margin: 0 auto;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.container {
+ # display: grid;
+ # grid-template-columns: repeat(5, 1fr);
+ # gap: 10px;
+ width:100%;
+ background-color:#eee;
+}
+
+.column{
+  #  flex-basis: 20%;
+  #  background: #eee;
+    min-height: 50px;
+    padding: 10px;
+    border-radius: 10px;
+	margin 10px;
+	width:100%;
+	min-width:600px;
+	max-width:100%;
+	# border-top: 5px solid #66dd99;
+}
+
+.list-group-item {
+  border: 3px solid #666;
+  background-color: #eee;
+  border-radius: .5em;
+  padding: 3px;
+  float:left;
+}
+.list-group-item.over {
+  border: 3px dotted #666;
+}
+.invisible{
+    display: none;
+}
+
+.button {
+   text-align: center;
+    margin-right: 0.5rem;
+	border-radius: 50%;
+      padding: 0.25em 0.5em;
+	  border:2px solid black;
+	  font-weight:bold;
+	  font-size:16px;
+}
+</style>
+</head>
+<body bgcolor="#bbddff">
+<style>
+.login {
+	box-sizing: border-box;
+  	font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+  	font-size: 16px;
+  	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+  	width: 400px;
+  	background-color: #ffffff;
+  	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+  	margin: 300px auto;
+}
+.login h1 {
+  	text-align: center;
+  	color: #5b6574;
+  	font-size: 24px;
+  	padding: 20px 0 20px 0;
+  	border-bottom: 2px solid #23b574;
+}
+.login form {
+  	display: flex;
+  	flex-wrap: wrap;
+  	justify-content: center;
+  	padding-top: 20px;
+}
+.login form label {
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	width: 50px;
+  	height: 50px;
+  	background-color: #23b574;
+  	color: #ffffff;
+}
+.login form input[type="password"], .login form input[type="text"] {
+  	width: 310px;
+  	height: 50px;
+  	border: 1px solid #dee0e4;
+  	margin-bottom: 20px;
+  	padding: 0 15px;
+}
+.login form input[type="submit"] {
+  	width: 100%;
+  	padding: 15px;
+ 	margin-top: 20px;
+  	background-color: #23b574;
+  	border: 0;
+  	cursor: pointer;
+  	font-weight: bold;
+  	color: #ffffff;
+  	transition: background-color 0.2s;
+}
+.login form input[type="submit"]:hover {
+	background-color: #6633cc;
+  	transition: background-color 0.2s;
+}
+</style>
+<div align="right" style="font-size:24px;"> <a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="#" onClick="document.getElementById('modalboomlogin').style.visibility='visible'; return false;">Log In</a> <a class="wflbutton" style="font-size:22px; margin-right:25px; background-color:#6633cc; min-width:50px;" href="register.html">Sign Up</a> <a href="#"><img src="images/help.png" alt="?" title="Help" style="margin-right:3px; width:30px; vertical-align:middle; height:30px;" onClick="document.getElementById('videohelp2').style.visibility='visible'; return false;"></a>
+</div>
+<div id="videohelp2" style="position:fixed; visibility:hidden; padding:2% 5% 5% 5%; z-index: 8; background-color:#CDFFE6; min-width:50%; min-height:50%; top:25%; left:25%; margin-left:-5%; margin-top:-10% display: inline-block; cursor: pointer; border:1px solid black; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; overflow: auto;	border-radius: 25px; text-align:center;">
+<div class="popupgridcloser"><span onClick="document.getElementById('videohelp2').style.visibility='hidden'; document.getElementById('bighelpvid2').src='https://www.youtube.com/embed/dq1N_-GQtEc';" style="font-size:20px; color:#ffffff; background-color:#ee2222; padding:4px; font-weight:bold;"> X </span><br></div>
+<span style="text-align:center;">Find Fair Trades Quickly<br>
+AdoptMeTradingValues.com How-To Video<br><br></span>
+<iframe id="bighelpvid2" width="640" height="390" src="https://www.youtube.com/embed/dq1N_-GQtEc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="modal" id="modalboomlogin"><div class="login" id="loginscreen">
+<div class="popupgridcloser" style="background-color:unset;"><span style="padding-right:45%; font-size:26px;">Log In</span> <span onClick="document.getElementById('modalboomlogin').style.visibility='hidden';" style="font-size:20px; color:#ffffff; background-color:#ee2222; padding:4px; font-weight:bold;"> X </span></div>
+<form action="https://adoptmetradingvalues.com/home.php" method="post">
+<label for="username">
+<img src="username.png" alt="UN" style="height:30px; width:30px;">
+</label>
+<input type="text" name="username" placeholder="Username" id="username" required>
+<label for="password">
+<img src="password.png" alt="PW" style="height:30px; width:30px;">
+</label>
+<input type="password" name="password" placeholder="Password" id="password" required>
+<br><span align="center" style="font-size:small;"><a href="forgotpw.html">Forgot Password</a></span><br>
+<input type="submit" value="Login">
+</form>
+</div></div><div align="center"><img src="images/header.png" alt="Roblox Adopt Me Trading Values">
+<ul align="center">
+<li><a href="index-2.html">W/F/L</a></li>
+<li><a class="active" href="pet-value-list.html">Pet Value List</a></li>
+<li><a href="play-games.html">Games</a></li>
+<li><a href="videos.html">Videos</a></li>
+<li><a href="tips-to-get-rich.html">Tips</a></li>
+<li><a href="roblox-adopt-me.html">About</a></li>
+</ul>
+</div>
+<div align="center">
+<script async src="../pagead2.googlesyndication.com/pagead/js/f3750.txt?client=ca-pub-5814941088162332" crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5814941088162332" data-ad-slot="7684926393" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="tradezonevaluelist">
+<div class="outergridvaluelist">
+<div align="center"><div align="center"><span style="font-size:24px;"><u>MVPs (Most Valuable Pets) - View User Created Value Lists</u></span></div><br><tr><td colspan=4>You have not yet created any value lists. Click the button below to get started.</td></tr></table><br><br><a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="pet-value-list-create-your-own.html">Make Your Own Value List</a> <a class="wflbutton" style="font-size:22px; margin-right:10px; background-color:#6633cc; min-width:50px;" href="pet-value-list-view3860.html?v=1">View Other Users' Value Lists</a><br><br>
+<script>
+function like(id) {			
+	document.getElementById("liketext").innerHTML="<div align='center'><img src='loading2.gif' alt='Loading'></div>";
+	var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("liketext").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET.html", "like5445.html?id="+id+"&rand="+Math.random(), true);
+    xmlhttp.send();
+}
+</script>
+</div>
+<br><br>
+</div>
+<div align="center">
+
+<script async src="../pagead2.googlesyndication.com/pagead/js/f3750.txt?client=ca-pub-5814941088162332" crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5814941088162332" data-ad-slot="7684926393" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+<br><br>
+<div align="center"><i>Last updated July 7, 2022</i> - <a href="updates.html">View Update Log</a> | <a href="privacypolicy.html">Privacy Policy</a></div><br><br>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-40249HE5LR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-40249HE5LR');
+</script>
+<script type="text/javascript" src="../s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60ba7e2fc1d62d27"></script>
+</body>
+
+<!-- Mirrored from adoptmetradingvalues.com/pet-value-list-view.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jul 2022 20:41:38 GMT -->
+</html>
